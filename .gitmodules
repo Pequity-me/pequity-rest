@@ -1,0 +1,4 @@
+[submodule "PequityIntrinsicValuation"]
+	path = PequityIntrinsicValuation
+	url = git@github.com:yasserfathy111/PequityIntrinsicValuation.git
+	branch = main

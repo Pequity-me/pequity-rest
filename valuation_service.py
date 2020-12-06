@@ -5,7 +5,7 @@ from oct2py import octave
 def run_valuation(args):    
     oc = oct2py.Oct2Py()
     oc.addpath('./PequityIntrinsicValuation')
-    value_low,value_high = oc.RunValuation( args['I_Industry'],
+    value_low,value_high,fig_path = oc.RunValuation( args['I_Industry'],
                                             int(args['I_ValueofDebt']),
                                             int(args['I_ValueofEquity']),
                                             int(args['I_ValueofAssets']),
@@ -17,10 +17,10 @@ def run_valuation(args):
                                             int(args['I_TTMVariableCost']),
                                             int(args['I_T_1YearVariableCost']),
                                             int(args['I_T_2YearVariableCost']),
-                                            verbose=True, nout=2
+                                            verbose=True, nout=3
                                             )
     oc.exit()
-    return value_low,value_high
+    return value_low,value_high,fig_path
 
 if __name__ == '__main__':
     #basic test case

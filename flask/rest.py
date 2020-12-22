@@ -1,10 +1,8 @@
 from flask import Flask,jsonify
 from flask_restful import Resource, Api, reqparse
-from base64 import encodebytes
 import pandas as pd
 import ast
 import time
-import os
 from valuation_service import run_valuation
 app = Flask(__name__)
 api = Api(app)
@@ -59,12 +57,8 @@ class Companies(Resource):
             'O_EnterpriseValueHigh':''
         }
 
-        low,high,fig_path = run_valuation(new_data_dict)
+        low,high = run_valuation(new_data_dict)
 
-        encoded_images = []
-        for filename in os.listdir(fig_path):
-            with open(os.path.join(fig_path, filename), 'rb') as image_file:
-                encoded_images.append(encodebytes(image_file.read()).decode('ascii'))
         # db ops
         # read our CSV
         data = pd.read_csv(db)
@@ -75,7 +69,6 @@ class Companies(Resource):
         data = data.append(new_data, ignore_index=True)
         # save back to CSV
         data.to_csv(db, index=False)
-        #return jsonify({'valuation_low':low,'valuation_high':high,'imgs':encoded_images})  # return data with 200 OK
         return jsonify({'valuation_low':low,'valuation_high':high})  # return data with 200 OK
 
 api.add_resource(Companies, '/companies')  # '/companies' is our entry point

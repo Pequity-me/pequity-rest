@@ -8,15 +8,15 @@ REST API for pequity
 Create the virtual env and install dep
 
 ```
-python -m venv ./venv
-pip install -r requirements.txt
+python3 -m venv ./venv
+pip3 install -r requirements.txt
 ```
 
 Activate it and execute the service
 
 ```
 source venv/bin/activate
-python rest.py
+python3 rest.py
 ```
 
 # samples generated with postman

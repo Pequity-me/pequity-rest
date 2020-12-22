@@ -75,10 +75,10 @@ class Companies(Resource):
         data = data.append(new_data, ignore_index=True)
         # save back to CSV
         data.to_csv(db, index=False)
-        return jsonify({'valuation_low':low,'valuation_high':high,'imgs':encoded_images})  # return data with 200 OK
-
+        #return jsonify({'valuation_low':low,'valuation_high':high,'imgs':encoded_images})  # return data with 200 OK
+        return jsonify({'valuation_low':low,'valuation_high':high})  # return data with 200 OK
 
 api.add_resource(Companies, '/companies')  # '/companies' is our entry point
 
 if __name__ == '__main__':
-     app.run(port='5002')
+     app.run()

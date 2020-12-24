@@ -1,21 +1,17 @@
 from flask import Flask,jsonify
 from flask_restful import Resource, Api, reqparse
-import pandas as pd
 import ast
 import time
 from valuation_service import run_valuation
 app = Flask(__name__)
 api = Api(app)
-db = 'companies.csv'
 
 
 
 
 class Companies(Resource):
     def get(self):
-        data = pd.read_csv(db)  # read CSV
-        data = data.to_dict()  # convert dataframe to dictionary
-        return {'data': data}, 200  # return data and 200 OK code
+        return 200  # return 200 OK code
     
     def post(self):
         parser = reqparse.RequestParser()  # initialize
@@ -59,16 +55,6 @@ class Companies(Resource):
 
         low,high = run_valuation(new_data_dict)
 
-        # db ops
-        # read our CSV
-        data = pd.read_csv(db)
-        # add the newly provided values
-        new_data_dict['O_EnterpriseValueLow'] = low
-        new_data_dict['O_EnterpriseValueHigh'] = high
-        new_data = pd.DataFrame(new_data_dict , index=[0] )
-        data = data.append(new_data, ignore_index=True)
-        # save back to CSV
-        data.to_csv(db, index=False)
         return jsonify({'valuation_low':low,'valuation_high':high})  # return data with 200 OK
 
 api.add_resource(Companies, '/companies')  # '/companies' is our entry point

@@ -5,6 +5,15 @@ REST API for pequity
 
 # installation and execution
 
+## Installation of the service 
+
+To build the service containers and bring them up
+```
+docker-compose build
+docker-compose up
+```
+
+## To just try the API locally 
 Create the virtual env and install dep
 
 ```

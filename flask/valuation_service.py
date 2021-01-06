@@ -1,3 +1,4 @@
+import logging
 import oct2py
 from oct2py import octave
 
@@ -5,6 +6,7 @@ from oct2py import octave
 def run_valuation(args):    
     oc = oct2py.Oct2Py()
     oc.addpath('./PequityIntrinsicValuation')
+    logging.debug(args)
     value_low,value_high = oc.RunValuation( args['I_Industry'],
                                             int(args['I_ValueofDebt']),
                                             int(args['I_ValueofEquity']),

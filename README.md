@@ -13,6 +13,11 @@ docker-compose build
 docker-compose up
 ```
 
+To view a container logs
+```
+docker logs --since=1h <container_id>
+```
+
 ## To just try the API locally 
 Create the virtual env and install dep
 

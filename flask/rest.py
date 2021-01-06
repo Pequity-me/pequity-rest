@@ -15,8 +15,8 @@ class Companies(Resource):
     
     def post(self):
         parser = reqparse.RequestParser()  # initialize
-        parser.add_argument('Email', required=True)  # add arguments
-        parser.add_argument('Name', required=True)
+        parser.add_argument('Email', required=False)  # add arguments
+        parser.add_argument('Name', required=False)
         parser.add_argument('I_Industry', required=True)
         parser.add_argument('I_ValueofDebt', required=True)
         parser.add_argument('I_ValueofEquity', required=True)

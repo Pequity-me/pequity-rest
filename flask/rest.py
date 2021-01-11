@@ -9,55 +9,49 @@ api = Api(app)
 
 
 
-class Companies(Resource):
+class ValuationCalculator(Resource):
+
     def get(self):
-        return 200  # return 200 OK code
-    
-    def post(self):
         parser = reqparse.RequestParser()  # initialize
         parser.add_argument('Email', required=False)  # add arguments
         parser.add_argument('Name', required=False)
+        parser.add_argument('I_Country', required=True)
         parser.add_argument('I_Industry', required=True)
-        parser.add_argument('I_ValueofDebt', required=True)
-        parser.add_argument('I_ValueofEquity', required=True)
-        parser.add_argument('I_ValueofAssets', required=True)
-        parser.add_argument('I_ValueofCash', required=True)
-        parser.add_argument('I_TTMRevenue', required=True)
-        parser.add_argument('I_T_1YearRevenue', required=True)
-        parser.add_argument('I_T_2YearRevenue', required=True)
-        parser.add_argument('I_FixedCost', required=True)
-        parser.add_argument('I_TTMVariableCost', required=True)
-        parser.add_argument('I_T_1YearVariableCost', required=True)
-        parser.add_argument('I_T_2YearVariableCost', required=True)
+        parser.add_argument('I_Debt', required=True)
+        parser.add_argument('I_NonCashAssets', required=True)
+        parser.add_argument('I_Cash', required=True)
+        parser.add_argument('I_YearlyFixedCost', required=True)
+        parser.add_argument('I_Revenue', required=True, action='append')
+        parser.add_argument('I_Cashflow', required=True, action='append')
         args = parser.parse_args()  # parse arguments to dictionary
 
-
+        I_YearlyFinancialEntries = [None]*(len(args['I_Revenue'])+len(args['I_Cashflow']))
+        I_YearlyFinancialEntries[::2] = args['I_Revenue']
+        I_YearlyFinancialEntries[1::2] = args['I_Cashflow']
         # create new dataframe containing new values
         new_data_dict = {
             'Timestamp' : str(int(time.time())),
             'Email': args['Email'],
             'Name': args['Name'],
+            'I_Country' : args['I_Country'],
             'I_Industry' : args['I_Industry'],
-            'I_ValueofDebt': args['I_ValueofDebt'],
-            'I_ValueofEquity': args['I_ValueofEquity'],
-            'I_ValueofAssets': args['I_ValueofAssets'],
-            'I_ValueofCash': args['I_ValueofCash'],
-            'I_TTMRevenue': args['I_TTMRevenue'],
-            'I_T_1YearRevenue': args['I_T_1YearRevenue'],
-            'I_T_2YearRevenue': args['I_T_2YearRevenue'],
-            'I_FixedCost': args['I_FixedCost'],
-            'I_TTMVariableCost': args['I_TTMVariableCost'],
-            'I_T_1YearVariableCost': args['I_T_1YearVariableCost'],
-            'I_T_2YearVariableCost': args['I_T_2YearVariableCost'],
-            'O_EnterpriseValueLow':'',
-            'O_EnterpriseValueHigh':''
+            'I_Debt': int(args['I_Debt']),
+            'I_NonCashAssets': int(args['I_NonCashAssets']),
+            'I_Cash': int(args['I_Cash']),
+            'I_YearlyFixedCost': int(args['I_YearlyFixedCost']),
+            'I_YearlyFinancialEntries': [ int(numeric_string) for numeric_string in I_YearlyFinancialEntries ]
         }
 
-        low,high = run_valuation(new_data_dict)
+        low,high,rev,var_cost,cashflow,period,err = run_valuation(new_data_dict)
+        rev = list(rev[0])
+        var_cost =list(var_cost[0])
+        cashflow =list(cashflow[0])
+        return jsonify({'O_EnterpriseValueLow':low,'O_EnterpriseValueHigh':high,
+                        'O_ProjectedRevenueSeries':rev, 'O_ProjectedVariableCostSeries':var_cost,'O_ProjectedCashFlowSeries':cashflow,
+                        'O_PlotPeriod':period, 'O_ErrorCode':err
+                        })  # return data with 200 OK
 
-        return jsonify({'valuation_low':low,'valuation_high':high})  # return data with 200 OK
-
-api.add_resource(Companies, '/companies')  # '/companies' is our entry point
+api.add_resource(ValuationCalculator, '/valcalc')  # '/valcalc' is our entry point
 
 if __name__ == '__main__':
      app.run()

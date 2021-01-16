@@ -21,13 +21,128 @@ class ValuationCalculator(Resource):
         parser.add_argument('I_NonCashAssets', required=True)
         parser.add_argument('I_Cash', required=True)
         parser.add_argument('I_YearlyFixedCost', required=True)
-        parser.add_argument('I_Revenue', required=True, action='append')
-        parser.add_argument('I_Cashflow', required=True, action='append')
+        parser.add_argument('I_Revenue[0]', required=True)
+        parser.add_argument('I_VariableCost[0]', required=True)
+        parser.add_argument('I_Revenue[1]', required=True)
+        parser.add_argument('I_VariableCost[1]', required=True)
+        parser.add_argument('I_Revenue[2]')
+        parser.add_argument('I_VariableCost[2]')
+        parser.add_argument('I_Revenue[3]')
+        parser.add_argument('I_VariableCost[3]')
+        parser.add_argument('I_Revenue[4]')
+        parser.add_argument('I_VariableCost[4]')
+        parser.add_argument('I_Revenue[5]')
+        parser.add_argument('I_VariableCost[5]')
+        parser.add_argument('I_Revenue[6]')
+        parser.add_argument('I_VariableCost[6]')
+        parser.add_argument('I_Revenue[7]')
+        parser.add_argument('I_VariableCost[7]')
+        parser.add_argument('I_Revenue[8]')
+        parser.add_argument('I_VariableCost[8]')
+        parser.add_argument('I_Revenue[9]')
+        parser.add_argument('I_VariableCost[9]')
+        parser.add_argument('I_Revenue[10]')
+        parser.add_argument('I_VariableCost[10]')
+        parser.add_argument('I_Revenue[11]')
+        parser.add_argument('I_VariableCost[11]')
+        parser.add_argument('I_Revenue[12]')
+        parser.add_argument('I_VariableCost[12]')
+        parser.add_argument('I_Revenue[13]')
+        parser.add_argument('I_VariableCost[13]')
+        parser.add_argument('I_Revenue[14]')
+        parser.add_argument('I_VariableCost[14]')
+        parser.add_argument('I_Revenue[15]')
+        parser.add_argument('I_VariableCost[15]')
+        parser.add_argument('I_Revenue[16]')
+        parser.add_argument('I_VariableCost[16]')
+        parser.add_argument('I_Revenue[17]')
+        parser.add_argument('I_VariableCost[17]')
+        parser.add_argument('I_Revenue[18]')
+        parser.add_argument('I_VariableCost[18]')
+        parser.add_argument('I_Revenue[19]')
+        parser.add_argument('I_VariableCost[19]')
+        
         args = parser.parse_args()  # parse arguments to dictionary
 
-        I_YearlyFinancialEntries = [None]*(len(args['I_Revenue'])+len(args['I_Cashflow']))
-        I_YearlyFinancialEntries[::2] = args['I_Revenue']
-        I_YearlyFinancialEntries[1::2] = args['I_Cashflow']
+        I_YearlyFinancialEntries = []
+        I_YearlyFinancialEntries.append(args['I_Revenue[0]'])
+        I_YearlyFinancialEntries.append(args['I_VariableCost[0]'])
+        I_YearlyFinancialEntries.append(args['I_Revenue[1]'])
+        I_YearlyFinancialEntries.append(args['I_VariableCost[1]'])
+
+        if args['I_Revenue[2]'] is not None and args['I_VariableCost[2]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[2]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[2]'])
+
+        if args['I_Revenue[3]'] is not None and args['I_VariableCost[3]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[3]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[3]'])
+
+        if args['I_Revenue[4]'] is not None and args['I_VariableCost[4]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[4]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[4]'])
+
+        if args['I_Revenue[5]'] is not None and args['I_VariableCost[5]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[5]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[5]'])
+
+        if args['I_Revenue[6]'] is not None and args['I_VariableCost[6]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[6]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[6]'])
+
+        if args['I_Revenue[7]'] is not None and args['I_VariableCost[7]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[7]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[7]'])
+
+        if args['I_Revenue[8]'] is not None and args['I_VariableCost[8]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[8]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[8]'])
+
+        if args['I_Revenue[9]'] is not None and args['I_VariableCost[9]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[9]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[9]'])
+
+        if args['I_Revenue[10]'] is not None and args['I_VariableCost[10]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[10]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[10]'])
+
+        if args['I_Revenue[11]'] is not None and args['I_VariableCost[11]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[11]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[11]'])
+
+        if args['I_Revenue[12]'] is not None and args['I_VariableCost[12]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[12]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[12]'])
+
+        if args['I_Revenue[13]'] is not None and args['I_VariableCost[13]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[13]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[13]'])
+
+        if args['I_Revenue[14]'] is not None and args['I_VariableCost[14]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[14]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[14]'])
+
+        if args['I_Revenue[15]'] is not None and args['I_VariableCost[15]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[15]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[15]'])
+
+        if args['I_Revenue[16]'] is not None and args['I_VariableCost[16]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[16]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[16]'])
+
+        if args['I_Revenue[17]'] is not None and args['I_VariableCost[17]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[17]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[17]'])
+
+        if args['I_Revenue[18]'] is not None and args['I_VariableCost[18]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[18]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[18]'])
+
+        if args['I_Revenue[19]'] is not None and args['I_VariableCost[19]'] is not None:
+            I_YearlyFinancialEntries.append(args['I_Revenue[19]'])
+            I_YearlyFinancialEntries.append(args['I_VariableCost[19]'])
+
+
         # create new dataframe containing new values
         new_data_dict = {
             'Timestamp' : str(int(time.time())),

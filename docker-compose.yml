@@ -15,8 +15,7 @@ services:
       options: 
         awslogs-region: us-east-2
         awslogs-group: my-docker-group
-        awslogs-create-group: true
-
+        
   nginx:
     build: ./nginx
     container_name: nginx
@@ -28,4 +27,4 @@ services:
       options: 
         awslogs-region: us-east-2
         awslogs-group: my-docker-group
-        awslogs-create-group: true
+        

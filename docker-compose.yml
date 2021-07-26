@@ -10,6 +10,12 @@ services:
       - APP_NAME=MyFlaskApp
     expose:
       - 8080
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-region: us-east-2
+        awslogs-group: my-docker-group
+        awslogs-create-group: true
 
   nginx:
     build: ./nginx
@@ -17,3 +23,9 @@ services:
     restart: always
     ports:
       - "80:80"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-region: us-east-2
+        awslogs-group: my-docker-group
+        awslogs-create-group: true

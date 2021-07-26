@@ -43,4 +43,4 @@ python3 rest.py
 
 # samples generated with postman
 
-<http://127.0.0.1:5000/valcalc?Name=Ahmed&Email=a@a.b&I_Industry=Advertising&I_Country=Egypt&I_Debt=200000&I_NonCashAssets=100000&I_Cash=200000&I_YearlyFixedCost=100000&I_Revenue=150000&I_Cashflow=35000&I_Revenue=120000&I_Cashflow=30000&I_Revenue=100000&I_Cashflow=20000&I_Revenue=70000&I_Cashflow=15000&I_Revenue=50000&I_Cashflow=12000>
+<http://api.pequity.me/valcalc?I_Industry=Advertising&I_Country=Egypt&I_Debt=200000&I_NonCashAssets=100000&I_Cash=200000&I_YearlyFixedCost=100000&I_Revenue[0]=150000&I_VariableCost[0]=35000&I_Revenue[1]=120000&I_VariableCost[1]=30000&I_Revenue[2]=100000&I_VariableCost[2]=20000&I_Revenue[3]=70000&I_VariableCost[3]=15000&I_Revenue[4]=50000&I_VariableCost[4]=12000>

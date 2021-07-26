@@ -13,9 +13,17 @@ docker-compose build
 docker-compose up
 ```
 
+## Misc
+
 To view a container logs
 ```
 docker logs --since=1h <container_id>
+```
+
+To delete dangling containers
+```
+docker image ls -f dangling=true
+docker image rm $(docker image ls -f dangling=true -q)
 ```
 
 ## To just try the API locally 

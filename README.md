@@ -1,7 +1,7 @@
 
 # pequity-rest
 
-REST API for pequity
+A python REST API for [pequity valuation matlab model](https://github.com/Pequity-me/PequityIntrinsicValuation)
 
 # installation and execution
 
@@ -43,4 +43,4 @@ python3 rest.py
 
 # samples generated with postman
 
-<http://api.pequity.me/valcalc?I_Industry=Advertising&I_Country=Egypt&I_Debt=200000&I_NonCashAssets=100000&I_Cash=200000&I_YearlyFixedCost=100000&I_Revenue[0]=150000&I_VariableCost[0]=35000&I_Revenue[1]=120000&I_VariableCost[1]=30000&I_Revenue[2]=100000&I_VariableCost[2]=20000&I_Revenue[3]=70000&I_VariableCost[3]=15000&I_Revenue[4]=50000&I_VariableCost[4]=12000>
+<http://localhost/valcalc?I_Industry=Advertising&I_Country=Egypt&I_Debt=200000&I_NonCashAssets=100000&I_Cash=200000&I_YearlyFixedCost=100000&I_Revenue[0]=150000&I_VariableCost[0]=35000&I_Revenue[1]=120000&I_VariableCost[1]=30000&I_Revenue[2]=100000&I_VariableCost[2]=20000&I_Revenue[3]=70000&I_VariableCost[3]=15000&I_Revenue[4]=50000&I_VariableCost[4]=12000>
